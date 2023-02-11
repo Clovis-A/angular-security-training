@@ -22,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
@@ -83,6 +84,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable() // <== for tests!! //TODO remove it
                 //.csrfTokenRepository(....)
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .headers()
                 .frameOptions()
                 .disable()
